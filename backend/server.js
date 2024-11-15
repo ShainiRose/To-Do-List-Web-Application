@@ -1,4 +1,3 @@
-// backend/server.js
 const express = require('express');
 const app = express();
 const PORT = 3000;
@@ -25,8 +24,22 @@ app.get('/tasks', (req, res) => {
 
 app.delete('/tasks/:id', (req, res) => {
   const { id } = req.params;
-  tasks = tasks.filter(task => task.id !== parseInt(id));
+  tasks = tasks.filter((task) => task.id !== parseInt(id));
   res.status(200).send();
+});
+
+app.put('/tasks/:id', (req, res) => {
+  const { id } = req.params;
+  const { title, description } = req.body;
+
+  const task = tasks.find((task) => task.id === parseInt(id));
+  if (task) {
+    task.title = title;
+    task.description = description;
+    res.status(200).json(task);
+  } else {
+    res.status(404).send('Task not found');
+  }
 });
 
 // Start server
