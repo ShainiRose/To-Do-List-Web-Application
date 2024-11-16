@@ -10,32 +10,36 @@ app.use(express.static('frontend'));
 let tasks = [];
 let currentId = 1;
 
-// Routes
+// Create a new task
 app.post('/tasks', (req, res) => {
   const { title, description } = req.body;
-  const newTask = { id: currentId++, title, description };
+  const newTask = { id: currentId++, title, description, done: false };
   tasks.push(newTask);
   res.status(201).json(newTask);
 });
 
+// Get all tasks
 app.get('/tasks', (req, res) => {
   res.json(tasks);
 });
 
+// Delete a task
 app.delete('/tasks/:id', (req, res) => {
   const { id } = req.params;
-  tasks = tasks.filter((task) => task.id !== parseInt(id));
+  tasks = tasks.filter(task => task.id !== parseInt(id));
   res.status(200).send();
 });
 
+// Update task (title, description, or done status)
 app.put('/tasks/:id', (req, res) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, done } = req.body;
 
-  const task = tasks.find((task) => task.id === parseInt(id));
+  const task = tasks.find(task => task.id === parseInt(id));
   if (task) {
-    task.title = title;
-    task.description = description;
+    if (title !== undefined) task.title = title;
+    if (description !== undefined) task.description = description;
+    if (done !== undefined) task.done = done;
     res.status(200).json(task);
   } else {
     res.status(404).send('Task not found');

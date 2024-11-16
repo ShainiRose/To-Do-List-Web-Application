@@ -1,12 +1,12 @@
 /* Styling for the background video */
 #backgroundVideo {
-  position: fixed; /* Makes the video fixed to the viewport */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the video covers the entire background */
-  z-index: -1; /* Places the video behind the main content */
+  object-fit: cover;
+  z-index: -1;
 }
 
 /* General body styling */
@@ -19,11 +19,10 @@ body {
   margin: 0;
 }
 
-/* Main container styling */
 .container {
   text-align: center;
-  max-width: 500px; /* Adjusted width for a larger form */
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -38,7 +37,7 @@ form {
 input, button {
   margin: 5px 0;
   padding: 10px;
-  border: 1px solid #7a4040;
+  border: 1px solid #580153;
   border-radius: 5px;
 }
 
@@ -54,42 +53,39 @@ ul {
 }
 
 li {
-  background-color: #ffffff; /* Default task background color */
+  background-color: #f0ebeb;
   padding: 10px;
   margin: 5px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 5px;
-  gap: 10px; /* Adds space between all child elements */
+  gap: 10px; /* Adds space between child elements */
 }
 
 li.completed {
-  background-color: rgb(172, 168, 168); /* Task turns ash when completed */
+  background-color: rgb(167, 167, 167); /* Task turns ash when completed */
 }
 
-/* Checkbox and title styling */
 li input[type="checkbox"] {
-  margin-right: 10px; 
+  margin-right: 10px; /* Space between checkbox and title */
 }
 
-/* Task text styling */
 li span {
-  flex-grow: 1; 
+  flex-grow: 1;
   text-align: left;
-}
-
-/* Styling for Delete and Update buttons */
-li button {
-  margin-left: 10px; 
+  /* No line-through by default */
 }
 
 li.completed span {
   text-decoration: line-through; /* Cross out the text when completed */
-  color: gray; /* Optional: Change text color to gray for completed tasks */
+  color: rgb(217, 217, 217); /* Optional: Change text color to gray for completed tasks */
 }
 
-/* Button styling */
+li button {
+  margin-left: 10px; /* Adds space between Delete and Update buttons */
+}
+
 button.delete {
   background-color: red;
   color: white;
@@ -107,3 +103,31 @@ button.update {
   padding: 5px 10px;
   cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

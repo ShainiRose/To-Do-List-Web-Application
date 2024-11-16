@@ -1,3 +1,4 @@
+// Add an event listener to the task form to handle form submission
 document.getElementById('taskForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -14,6 +15,7 @@ document.getElementById('taskForm').addEventListener('submit', async (e) => {
   loadTasks();
 });
 
+// Function to fetch and display the list of tasks
 async function loadTasks() {
   const response = await fetch('/tasks');
   const tasks = await response.json();
@@ -23,8 +25,10 @@ async function loadTasks() {
 
   tasks.forEach((task) => {
     const li = document.createElement('li');
+    li.className = task.done ? 'completed' : '';
+
     li.innerHTML = `
-      <input type="checkbox" onclick="toggleTask(event, '${task.id}')">
+      <input type="checkbox" onclick="toggleTask(event, '${task.id}')" ${task.done ? 'checked' : ''}>
       <span>${task.title} - ${task.description}</span>
       <button class="delete" onclick="deleteTask('${task.id}')">Delete</button>
       <button class="update" onclick="updateTask('${task.id}')">Update</button>
@@ -33,37 +37,47 @@ async function loadTasks() {
   });
 }
 
+// Function to delete a task
 async function deleteTask(id) {
   await fetch(`/tasks/${id}`, { method: 'DELETE' });
   loadTasks();
 }
 
+// Function to toggle the completion status of a task
+async function toggleTask(event, id) {
+  const done = event.target.checked;
+
+  await fetch(`/tasks/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ done }),
+  });
+
+  loadTasks();
+}
+
+// Function to update a task's title and description
 async function updateTask(id) {
-  const response = await fetch(`/tasks`);
+  const response = await fetch('/tasks');
   const tasks = await response.json();
-  const task = tasks.find((t) => t.id === parseInt(id));
+  const task = tasks.find(task => task.id === parseInt(id));
 
-  const title = prompt('Update Task Title', task.title);
-  const description = prompt('Update Task Description', task.description);
+  if (task) {
+    const title = prompt('Update Task Title', task.title);
+    const description = prompt('Update Task Description', task.description);
 
-  if (title && description) {
-    await fetch(`/tasks/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, description }),
-    });
-    loadTasks();
-  }
-}
-
-function toggleTask(event, id) {
-  const li = event.target.parentElement;
-
-  if (event.target.checked) {
-    li.classList.add('completed'); // Add completed class to change background and style
+    if (title && description) {
+      await fetch(`/tasks/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description }),
+      });
+      loadTasks();
+    }
   } else {
-    li.classList.remove('completed'); // Remove completed class to revert style
+    alert('Task not found!');
   }
 }
 
+// Load the tasks when the page is first loaded
 loadTasks();
