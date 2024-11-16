@@ -15,7 +15,7 @@
 ## Features
 - Add, view, and delete tasks.
 - Update tasks with a new title and description using a prompt-style dialog box.
-- Mark tasks as complete or incomplete by toggling a checkbox.
+- Mark tasks as complete by toggling a checkbox.
 - Visually distinguish completed tasks with a background color and strikethrough text.
 
 
