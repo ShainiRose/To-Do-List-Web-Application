@@ -1,4 +1,4 @@
-# Simple To-Do List Web Application #
+# Simple To-Do List Web Application 
 
 ## Setup Instructions
 
