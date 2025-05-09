@@ -6,7 +6,7 @@
 2. Navigate to the project folder.
 3. Run "npm install" to install dependencies.
 4. Start the application by running either "npm run dev" or "npm start" in the terminal.
-   (e.g: C:\Users\Documents\todo-app>npm run dev OR C:\Users\Documents\todo-app>npm start)
+                (e.g: C:\Users\Documents\todo-app>npm run dev OR C:\Users\Documents\todo-app>npm start)
 5. Open " http://localhost:3000 " in the browser.
 
 ## Assumptions
