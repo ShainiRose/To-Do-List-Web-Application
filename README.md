@@ -7,7 +7,8 @@
 3. Run "npm install" to install dependencies.
 4. Start the application by running either "npm run dev" or "npm start" in the terminal.
                 (e.g: C:\Users\Documents\todo-app>npm run dev OR C:\Users\Documents\todo-app>npm start)
-5. Open " http://localhost:3000 " in the browser.
+   
+6. Open " http://localhost:3000 " in the browser.
 
 ## Assumptions
 - This app uses in-memory storage, so tasks are lost when the server restarts.
